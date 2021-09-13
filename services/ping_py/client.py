@@ -3,7 +3,7 @@ from pynats import NATSClient
 from _schemas import ping_pb2
 
 if __name__ == "__main__":
-    client = NATSClient()
+    client = NATSClient("nats://192.168.50.165:4222")
     client.connect()
 
     ping_request = ping_pb2.PingRequest()
