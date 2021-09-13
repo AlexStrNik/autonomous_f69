@@ -1,4 +1,9 @@
-schemas=$(find schemas/*.proto)
-if [ -d build/schemas ]; then rm -rf build/schemas; fi
-mkdir -p build/schemas
-protoc --python_out build --rust_out build $schemas
+services_py=$(find services/**_py/schemas.txt)
+services_rs=$(find services/**_rs/schemas.txt)
+cd schemas
+for service in $services_py; do
+    cat ../$service | xargs protoc --python_out ../$(dirname $service);
+done
+for service in $services_rs; do
+    cat ../$service | xargs protoc --rust_out ../$(dirname $service);
+done
