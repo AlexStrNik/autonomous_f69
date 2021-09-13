@@ -1,6 +1,7 @@
 cat >/etc/systemd/system/nats.service <<EOF
 [Unit]
 Description=NATS server
+After=network.target
 
 [Service]
 ExecStart=/usr/bin/nats-server
