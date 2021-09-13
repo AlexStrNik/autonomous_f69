@@ -1,7 +1,7 @@
 from pynats import NATSClient
 import pyrealsense2 as rs
 
-from _schemas import position_pb2, vector3_pb2
+from _schemas import position_pb2, vector3_pb2, quaternion_pb2
 
 cfg = rs.config()
 cfg.enable_stream(rs.stream.pose)
@@ -28,7 +28,14 @@ if __name__ == "__main__":
                     position.y = data.translation.y
                     position.z = data.translation.z
 
+                    rotation = quaternion_pb2.Quaternion()
+                    rotation.x = data.rotation.x
+                    rotation.y = data.rotation.y
+                    rotation.z = data.rotation.z
+                    rotation.w = data.rotation.w
+
                     frame.position.CopyFrom(position)
+                    frame.rotation.CopyFrom(rotation)
 
                     client.publish(
                         "position", payload=frame.SerializeToString())

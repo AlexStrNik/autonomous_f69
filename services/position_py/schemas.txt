@@ -1,2 +1,3 @@
 position.proto
 vector3.proto
+quaternion.proto
