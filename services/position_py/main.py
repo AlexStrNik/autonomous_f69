@@ -30,6 +30,6 @@ if __name__ == "__main__":
 
                 frame.position.CopyFrom(position)
 
-                client.publish("position", payload=frame)
+                client.publish("position", payload=frame.SerializeToString())
     finally:
         pipe.stop()
