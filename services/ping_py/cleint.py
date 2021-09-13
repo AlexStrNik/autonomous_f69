@@ -1,6 +1,6 @@
 from pynats import NATSClient
 
-import ping_pb2
+from _schemas import ping_pb2
 
 if __name__ == "__main__":
     client = NATSClient()

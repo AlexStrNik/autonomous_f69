@@ -6,7 +6,7 @@ echo "nats-python==0.8.0" >> services/$service/requirements.txt
 cat >services/$service/main.py <<EOF
 from pynats import NATSClient
 
-import ping_pb2
+from _schemas import ping_pb2
 
 if __name__ == "__main__":
     with NATSClient() as client:
