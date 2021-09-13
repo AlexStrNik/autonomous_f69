@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package autonomous_f69;
+
+message MovementRequest {
+    bool steering_null = 1;   // should be True if we do not pass steering_value
+    float steering_value = 2; // [-1, 1]
+    bool speed_null = 3;      // should be True if we do not pass speed_value
+    float speed_value = 4;    // [-1, 1]
+}
+
+message MovementResponse {
+    bool success = 1;   // False if message was not passed due to missed controller in usb
+}
