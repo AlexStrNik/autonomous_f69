@@ -1,8 +1,11 @@
 syntax = "proto3";
 
 package autonomous_f69;
+
 import "vector3.proto";
+import "quaternion.proto";
 
 message Position {
     Vector3 position = 1;
+    Quaternion rotation = 2;
 }
