@@ -1,7 +1,8 @@
 service=$1_py
-mkdir services/$1
+mkdir services/$service
 echo "ping.proto" > services/$service/schemas.txt
-touch services/$service/requirements.txt
+echo "protobuf==3.17.3" > services/$service/requirements.txt
+echo "nats-python==0.8.0" >> services/$service/requirements.txt
 cat >services/$service/main.py <<EOF
 from pynats import NATSClient
 
