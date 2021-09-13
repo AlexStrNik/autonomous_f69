@@ -1,2 +1,4 @@
 schemas=$(find schemas/*.proto)
-protoc --python_out schemas/out --rust_out schemas/out $schemas
+if [ -d build/schemas ]; then rm -rf build/schemas; fi
+mkdir -p build/schemas
+protoc --python_out build --rust_out build $schemas
