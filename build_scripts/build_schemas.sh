@@ -8,12 +8,11 @@ for service in $services_py; do
     touch ../$(dirname $service)/_schemas/__init__.py;
 done
 for service in $services_rs; do
-    if [ -d ../$(dirname $service)/src/_schemas ]; then rm -rf ../$(dirname $service)/src/_schemas; fi;
+    if [ -d ../$(dirname $service)/src/_schemas ]; then rm -rf ../$(dirname $service)/src/_schemas; rm ../$(dirname $service)/src/_schemas.rs; fi;
     mkdir ../$(dirname $service)/src/_schemas;
-    echo "" > ../$(dirname $service)/src/_schemas.rs;
     cat ../$service | xargs protoc --rust_out ../$(dirname $service)/src/_schemas;
     for proto in $(cat ../$service); do
-        echo $proto
-        echo "pub mod $(basename $proto);" >> ../$(dirname $service)/src/_schemas.rs;
+        proto_file=$(basename $proto);
+        echo "pub mod ${proto_file%.*};" >> ../$(dirname $service)/src/_schemas.rs;
     done
 done
