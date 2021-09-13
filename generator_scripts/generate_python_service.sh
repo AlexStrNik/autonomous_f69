@@ -1,7 +1,8 @@
+service=$1_py
 mkdir services/$1
-echo "ping.proto" > services/$1/schemas.txt
-touch services/$1/requirements.txt
-cat >services/$1/main.py <<EOF
+echo "ping.proto" > services/$service/schemas.txt
+touch services/$service/requirements.txt
+cat >services/$service/main.py <<EOF
 from pynats import NATSClient
 
 import ping_pb2
