@@ -6,6 +6,7 @@ for service in $services_py; do
     mkdir ../$(dirname $service)/_schemas;
     cat ../$service | xargs protoc --python_out ../$(dirname $service)/_schemas;
     touch ../$(dirname $service)/_schemas/__init__.py;
+    find ../$(dirname $service)/_schemas/*_pb2.py | xargs sed -i -E "s/import ([a-z0-9]+_pb2)/from . import \1/g"
 done
 for service in $services_rs; do
     if [ -d ../$(dirname $service)/src/_schemas ]; then rm -rf ../$(dirname $service)/src/_schemas; rm ../$(dirname $service)/src/_schemas.rs; fi;
