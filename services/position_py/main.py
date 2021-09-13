@@ -22,11 +22,13 @@ if __name__ == "__main__":
                 data = pose.get_pose_data()
 
                 frame = position_pb2.Position()
-                frame.position = vector3_pb2.Vector3()
 
-                frame.position.x = data.translation.x
-                frame.position.y = data.translation.y
-                frame.position.z = data.translation.z
+                position = vector3_pb2.Vector3()
+                position.x = data.translation.x
+                position.y = data.translation.y
+                position.z = data.translation.z
+
+                frame.position.CopyFrom(position)
 
                 client.publish("position", payload=frame)
     finally:
