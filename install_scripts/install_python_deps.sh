@@ -1,2 +1,4 @@
-pip3 install 
-find services/**/requirements.txt | xargs pip3 install -r
+services=$(find services/**/requirements.txt)
+for service in $services; do
+    pip3 install -r $service;
+done;
