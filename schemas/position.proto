@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package autonomous_f69;
+import "vector3.proto";
+
+message Position {
+    Vector3 position = 1;
+}
