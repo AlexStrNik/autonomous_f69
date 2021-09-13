@@ -6,7 +6,7 @@ use _schemas::ping::*;
 fn main() {
     let client = nats::connect("nats://192.168.50.165:4222").unwrap();
 
-    let sub = client.subscribe("ping").unwrap();
+    let sub = client.subscribe("ping2").unwrap();
 
     for msg in sub.messages() {
         let ping_request = PingRequest::parse_from_bytes(&msg.data).unwrap();
