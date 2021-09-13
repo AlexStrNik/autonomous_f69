@@ -1,4 +1,5 @@
 service=$1_rs
+if [ -d services/$service ]; then echo "error: service already exists" >>/dev/stderr; exit 1; fi;
 cargo init services/$service
 echo "ping.proto" > services/$service/schemas.txt
 echo "protobuf = \"2.25.1\"" >> services/$service/Cargo.toml
