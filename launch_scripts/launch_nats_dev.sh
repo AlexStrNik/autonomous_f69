@@ -4,4 +4,5 @@ websocket: {
   no_tls: true
 }
 EOF
+killall nats-server &>/dev/null
 nats-server -c ~/.config/nats.conf
