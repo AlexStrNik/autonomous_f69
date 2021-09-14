@@ -5,3 +5,4 @@ _schemas
 _schemas.rs
 *.service
 node_modules
+build
