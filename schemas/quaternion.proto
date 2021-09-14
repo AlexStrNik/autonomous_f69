@@ -3,8 +3,8 @@ syntax = "proto3";
 package autonomous_f69;
 
 message Quaternion {
-    int32 x = 1;
-    int32 y = 2;
-    int32 z = 3;
-    int32 w = 4;
+    float x = 1;
+    float y = 2;
+    float z = 3;
+    float w = 4;
 }
