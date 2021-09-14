@@ -4,7 +4,7 @@ use protobuf::Message;
 use _schemas::ping::*;
 
 fn main() {
-    let client = nats::connect("nats://192.168.50.165:4222").unwrap();
+    let client = nats::connect("nats://127.0.0.1:4222").unwrap();
 
     let sub = client.subscribe("ping2").unwrap();
 
