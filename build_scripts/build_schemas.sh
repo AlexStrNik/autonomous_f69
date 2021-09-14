@@ -19,4 +19,4 @@ for service in $services_rs; do
 done
 if [ -d ../tools/viewer/src/_schemas ]; then rm -rf ../tools/viewer/src/_schemas; fi;
 mkdir ../tools/viewer/src/_schemas
-cat ../tools/viewer/schemas.txt | xargs protoc --js_out "import_style=commonjs,binary:../tools/viewer/src/_schemas" --ts_out ../tools/viewer/src/_schemas
+cat ../tools/viewer/schemas.txt | xargs protoc --ts_proto_opt esModuleInterop=true --ts_proto_out ../tools/viewer/src/_schemas
