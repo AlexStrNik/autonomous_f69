@@ -4,3 +4,4 @@ target
 _schemas
 _schemas.rs
 *.service
+node_modules
