@@ -17,7 +17,9 @@ function App() {
 
   useEffect(() => {
     if (nc === undefined) {
-      connect({ servers: ["ws://localhost:4223"] })
+      connect({
+        servers: ["nats://192.168.50.165:4223", "ws://localhost:4223"],
+      })
         .then((nc) => {
           setConnection(nc);
           // console.log("connected properly");

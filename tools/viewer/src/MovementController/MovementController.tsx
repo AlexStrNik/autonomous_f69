@@ -16,7 +16,7 @@ export default function MovementController({
   const [steerValue, setSteerValue] = useState(0.0);
 
   useEffect(() => {
-    nc?.publish(
+    nc?.request(
       "movement_controller",
       MovementRequest.encode({
         speedNull: false,
@@ -24,7 +24,10 @@ export default function MovementController({
         steeringNull: false,
         steeringValue: steerValue / 100.0,
       }).finish()
-    );
+    )
+      .then((_) => {})
+      .catch((err) => console.log(err));
+    console.log("sent", speedValue / 100.0, steerValue / 100.0);
   }, [speedValue, steerValue]);
 
   return (
