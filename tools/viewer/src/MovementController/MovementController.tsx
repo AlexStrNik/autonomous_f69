@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  connect,
-  Msg,
-  NatsConnection,
-  NatsError,
-} from "../../node_modules/nats.ws/lib/src/mod.js";
+import { NatsConnection } from "../../node_modules/nats.ws/lib/src/mod.js";
 import { MovementRequest, MovementResponse } from "../_schemas/movement";
 
 export default function MovementController({
@@ -19,10 +14,8 @@ export default function MovementController({
     nc?.request(
       "movement_controller",
       MovementRequest.encode({
-        speedNull: false,
-        speedValue: speedValue / 100.0,
-        steeringNull: false,
-        steeringValue: steerValue / 100.0,
+        speed: speedValue / 100.0,
+        steering: steerValue / 100.0,
       }).finish()
     )
       .then((_) => {})
