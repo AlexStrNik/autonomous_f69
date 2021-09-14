@@ -8,6 +8,7 @@ Description=NATS $service_name service
 After=nats.service
 
 [Service]
+WorkingDirectory=$(realpath $(dirname $service))
 Environment=PYTHONPATH=:/usr/local/lib/python3.6/pyrealsense2
 ExecStart=/usr/bin/python3 $(realpath $service)
 User=$(id -un)
@@ -26,6 +27,7 @@ Description=NATS $service_name service
 After=nats.service
 
 [Service]
+WorkingDirectory=$(dirname $service_bin)
 ExecStart=$service_bin
 User=$(id -un)
 Restart=on-failure
