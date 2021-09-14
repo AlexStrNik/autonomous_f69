@@ -19,7 +19,7 @@ def get_msg(speed: Union[float, None], steer: Union[float, None]) -> movement_pb
 
 
 if __name__ == "__main__":
-    client = NATSClient("nats://192.168.50.165:4222")
+    client = NATSClient()
     client.connect()
 
     movement_request = get_msg(speed=0.1, steer=1)

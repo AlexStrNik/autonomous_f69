@@ -18,4 +18,4 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
 systemctl enable nats
-systemctl start nats
+systemctl restart nats
