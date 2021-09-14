@@ -17,3 +17,6 @@ for service in $services_rs; do
         echo "pub mod ${proto_file%.*};" >> ../$(dirname $service)/src/_schemas.rs;
     done
 done
+if [ -d ../tools/viewer/src/_schemas ]; then rm -rf ../tools/viewer/src/_schemas; fi;
+mkdir ../tools/viewer/src/_schemas
+cat ../tools/viewer/schemas.txt | xargs protoc --js_out "import_style=commonjs,binary:../tools/viewer/src/_schemas" --ts_out ../tools/viewer/src/_schemas
