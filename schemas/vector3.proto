@@ -1,9 +1,9 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package autonomous_f69;
 
 message Vector3 {
-    float x = 1;
-    float y = 2;
-    float z = 3;
+    required float x = 1;
+    required float y = 2;
+    required float z = 3;
 }

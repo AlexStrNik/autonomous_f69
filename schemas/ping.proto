@@ -1,11 +1,11 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package autonomous_f69;
 
 message PingRequest {
-    int32 number = 1;
+    required int32 number = 1;
 }
 
 message PongResponse {
-    int32 number = 1;
+    required int32 number = 1;
 }
