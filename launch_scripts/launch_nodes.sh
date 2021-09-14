@@ -9,5 +9,5 @@ for service in $services_rs; do
     systemctl stop $service_name
 done
 for service in $(cat $1); do
-    systemctl restart service
+    systemctl restart $service
 done
