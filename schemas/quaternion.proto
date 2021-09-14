@@ -1,10 +1,10 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package autonomous_f69;
 
 message Quaternion {
-    float x = 1;
-    float y = 2;
-    float z = 3;
-    float w = 4;
+    required float x = 1;
+    required float y = 2;
+    required float z = 3;
+    required float w = 4;
 }
