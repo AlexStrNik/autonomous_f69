@@ -1,3 +1,4 @@
+#!/bin/bash
 systemctl stop $1
 service_dir=services/$1
 if [[ "$1" =~ _py$ ]];

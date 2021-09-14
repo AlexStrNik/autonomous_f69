@@ -1,3 +1,4 @@
+#!/bin/bash
 services_py=$(find services/**_py/schemas.txt)
 services_rs=$(find services/**_rs/schemas.txt)
 cd schemas

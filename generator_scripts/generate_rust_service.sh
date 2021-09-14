@@ -1,3 +1,4 @@
+#!/bin/bash
 service=$1_rs
 if [ -d services/$service ]; then echo "error: service already exists" >>/dev/stderr; exit 1; fi;
 cargo init services/$service
