@@ -61,10 +61,10 @@ if __name__ == "__main__":
 
             if controller:
                 # send values only if we are connected
-                if not movement_request.steering_null:
-                    turn_wheels(movement_request.steering_value)
-                if not movement_request.speed_null:
-                    run_motors(movement_request.speed_value)
+                if not movement_request.steering:
+                    turn_wheels(movement_request.steering)
+                if not movement_request.speed:
+                    run_motors(movement_request.speed)
 
             movement_response = movement_pb2.MovementResponse()
             movement_response.success = controller != None
