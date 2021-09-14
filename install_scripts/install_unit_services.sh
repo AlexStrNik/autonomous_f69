@@ -1,3 +1,4 @@
+#!/bin/bash
 units=$(find services/**/*.service)
 for unit in $units; do
     unit_name=$(basename $unit);

@@ -1,3 +1,4 @@
+#!/bin/bash
 services_py=$(find services/**_py/main.py)
 services_rs=$(find services/**_rs/Cargo.toml)
 for service in $services_py; do

@@ -1,3 +1,4 @@
+#!/bin/bash
 cat >/etc/nats.conf <<EOF
 websocket: {
   port: 4223
