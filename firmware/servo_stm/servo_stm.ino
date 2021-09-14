@@ -26,7 +26,7 @@ void setup() {
   rear.writeMicroseconds(1500);
   delay(3000);
   digitalWrite(LED_BUILTIN, LOW);
-  steering.write((STEERING_MAX - STEERING_MIN)/2);
+  steering.write(STEERING_MIN + 50);
 }
 
 int lastRearSpeed = 1500;
@@ -34,15 +34,15 @@ void loop() {
   // we wait until 2 bytes
   if (Serial.available() > 1) {
     int motorType = Serial.read();
-    //    if (motorType == '!') return;
+        if (motorType == 255) return;
     int motorSpeedRaw = Serial.read();
-    //    if (motorSpeedRaw == '!') return;
+        if (motorSpeedRaw == 255) return;
 
     if (motorType == 's') {
       steering.write(STEERING_MIN + (80 - motorSpeedRaw));
       digitalWrite(LED_BUILTIN, HIGH);
-      Serial.print("steer");
-      Serial.println(motorSpeedRaw);
+//      Serial.print("steer");
+//      Serial.println(motorSpeedRaw);
     } else if (motorType == 'r') {
       int motorSpeed = 0;
       if (motorSpeedRaw < REAR_STOP_BYTE) {
@@ -50,12 +50,12 @@ void loop() {
       } else if (motorSpeedRaw == REAR_STOP_BYTE) {
         motorSpeed = FULL_STOP;
       } else {
-        Serial.print("rev");
+//        Serial.print("rev");
         motorSpeed = map(motorSpeedRaw - REAR_STOP_BYTE, 0, 80, MIN_THROTTLE, FULL_THROTTLE);
       }
 
       if (motorSpeed < FULL_STOP && lastRearSpeed >= FULL_STOP) {
-        Serial.print("comp");
+//        Serial.print("comp");
         rear.writeMicroseconds(FULL_STOP);
         delay(200);
         rear.writeMicroseconds(FULL_REVERSE);
@@ -66,7 +66,7 @@ void loop() {
       rear.writeMicroseconds(motorSpeed);
       lastRearSpeed = motorSpeed;
 
-      Serial.print("rear");
+//      Serial.print("rear");
       digitalWrite(LED_BUILTIN, LOW);
       Serial.println(motorSpeed);
     }
