@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import PoseViewer from "../PoseViewer/PoseViewer";
 import "./App.css";
 import { Position } from "../_schemas/position";
+import MovementController from "../MovementController/MovementController";
 
 function App() {
   const [nc, setConnection] = useState<NatsConnection | undefined>(undefined);
@@ -35,7 +36,7 @@ function App() {
     console.log(newlyPoint.position);
   };
 
-  const Views = ["PoseViewer", "VideoViewer"];
+  const Views = ["PoseViewer", "VideoViewer", "MovementController"];
 
   const [selectedView, setSelectedView] = useState<string | undefined>(
     "PoseViewer"
@@ -60,6 +61,11 @@ function App() {
         <></>
       )}
       {selectedView == "VideoViewer" ? <></> : <></>}
+      {selectedView == "MovementController" ? (
+        <MovementController nc={nc} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
