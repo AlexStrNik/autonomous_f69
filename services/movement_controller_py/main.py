@@ -4,7 +4,7 @@ import math
 
 from _schemas import movement_pb2
 
-CONTROLLER_PORT = "/dev/ttyACM0"
+CONTROLLER_PORT = "/dev/ttyACM1"
 
 controller = None
 try:

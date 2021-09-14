@@ -40,3 +40,17 @@
     transform: rotate(360deg);
   }
 }
+
+.movement-controller {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.vertical-input {
+  margin-top: 50%;
+  margin-bottom: 50%;
+  transform: rotate(270deg);
+}

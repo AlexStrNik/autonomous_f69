@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import PoseViewer from "../PoseViewer/PoseViewer";
 import "./App.css";
 import { Position } from "../_schemas/position";
+import MovementController from "../MovementController/MovementController";
 
 function App() {
   const [nc, setConnection] = useState<NatsConnection | undefined>(undefined);
@@ -16,7 +17,9 @@ function App() {
 
   useEffect(() => {
     if (nc === undefined) {
-      connect({ servers: ["ws://localhost:4223"] })
+      connect({
+        servers: ["nats://192.168.50.165:4223", "ws://localhost:4223"],
+      })
         .then((nc) => {
           setConnection(nc);
           // console.log("connected properly");
@@ -35,7 +38,7 @@ function App() {
     console.log(newlyPoint.position);
   };
 
-  const Views = ["PoseViewer", "VideoViewer"];
+  const Views = ["PoseViewer", "VideoViewer", "MovementController"];
 
   const [selectedView, setSelectedView] = useState<string | undefined>(
     "PoseViewer"
@@ -60,6 +63,11 @@ function App() {
         <></>
       )}
       {selectedView == "VideoViewer" ? <></> : <></>}
+      {selectedView == "MovementController" ? (
+        <MovementController nc={nc} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
