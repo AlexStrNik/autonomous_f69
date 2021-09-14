@@ -19,7 +19,7 @@ fn main() {
         let ping_request = PingRequest::parse_from_bytes(&msg.data).unwrap();
 
         let mut pong_response = PongResponse::new();
-        pong_response.number = ping_request.number + 1;
+        pong_response.set_number(ping_request.get_number() + 1);
         let bytes = pong_response.write_to_bytes().unwrap();
 
         msg.respond(bytes).unwrap();
