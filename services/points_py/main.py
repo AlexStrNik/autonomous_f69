@@ -37,7 +37,7 @@ if __name__ == "__main__":
             angle = -FOV / 2.0
             x = 0
 
-            points = []
+            frame = points_pb2.Points()
 
             for _ in range(POINTS_N):
                 median_len = 0
@@ -55,13 +55,10 @@ if __name__ == "__main__":
                 point.x = px
                 point.y = py
 
-                points.append(points)
+                frame.points.append(point)
 
                 x += dx
                 angle += da
-
-            frame = points_pb2.Points()
-            frame.points.CopyFrom(points)
 
             client.publish(
                 "points", payload=frame.SerializeToString())
