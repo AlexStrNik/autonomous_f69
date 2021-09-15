@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package autonomous_f69;
+
+message Log {
+    optional string sender = 1;
+    optional string message = 2;
+}
