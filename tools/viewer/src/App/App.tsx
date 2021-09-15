@@ -12,6 +12,7 @@ import { Position } from "../_schemas/position";
 import MovementController from "../MovementController/MovementController";
 import LogViewer from "../LogViewer/LogViewer";
 import { Log } from "../_schemas/log";
+import PointsViewer from "../PointsViewer/PointsViewer";
 
 function App() {
   const [nc, setConnection] = useState<NatsConnection | undefined>(undefined);
@@ -20,7 +21,7 @@ function App() {
   useEffect(() => {
     if (nc === undefined) {
       connect({
-        servers: ["nats://192.168.50.165:4223"], // , "ws://localhost:4223"
+        servers: ["nats://192.168.154.135:4223"], // , "ws://localhost:4223"
       })
         .then((nc) => {
           setConnection(nc);
@@ -62,6 +63,7 @@ function App() {
     "VideoViewer",
     "MovementController",
     "LogViewer",
+    "PointsViewer",
   ];
 
   const [selectedView, setSelectedView] = useState<string | undefined>(
@@ -93,6 +95,13 @@ function App() {
         <></>
       )}
       {selectedView == "LogViewer" ? <LogViewer logs={logs} /> : <></>}
+      {selectedView == "PointsViewer" ? (
+        <Stage width={600} height={600} options={{ backgroundColor: 0xeef1f5 }}>
+          <PointsViewer nc={nc} />
+        </Stage>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
