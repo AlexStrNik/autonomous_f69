@@ -10,6 +10,8 @@ import PoseViewer from "../PoseViewer/PoseViewer";
 import "./App.css";
 import { Position } from "../_schemas/position";
 import MovementController from "../MovementController/MovementController";
+import LogViewer from "../LogViewer/LogViewer";
+import { Log } from "../_schemas/log";
 
 function App() {
   const [nc, setConnection] = useState<NatsConnection | undefined>(undefined);
@@ -18,12 +20,13 @@ function App() {
   useEffect(() => {
     if (nc === undefined) {
       connect({
-        servers: ["nats://192.168.50.165:4223", "ws://localhost:4223"],
+        servers: ["nats://192.168.50.165:4223"], // , "ws://localhost:4223"
       })
         .then((nc) => {
           setConnection(nc);
           // console.log("connected properly");
           nc.subscribe("position", { callback: positionCallback });
+          nc.subscribe("logger", { callback: loggerCallback });
         })
         .catch((err) => setError(err));
     }
@@ -38,7 +41,28 @@ function App() {
     console.log(newlyPoint.position);
   };
 
-  const Views = ["PoseViewer", "VideoViewer", "MovementController"];
+  const [newLog, setNewLog] = useState<Log | undefined>(undefined);
+  const loggerCallback = (_err: NatsError | null, msg: Msg) => {
+    console.log("received msg");
+    setNewLog(undefined);
+    const newlyLog = Log.decode(msg.data);
+    setNewLog(newlyLog);
+  };
+
+  const [logs, setLogs] = useState<Log[] | undefined>(undefined);
+
+  useEffect(() => {
+    if (newLog === undefined) return;
+
+    setLogs([...(logs ?? []), newLog]);
+  }, [newLog]);
+
+  const Views = [
+    "PoseViewer",
+    "VideoViewer",
+    "MovementController",
+    "LogViewer",
+  ];
 
   const [selectedView, setSelectedView] = useState<string | undefined>(
     "PoseViewer"
@@ -68,6 +92,7 @@ function App() {
       ) : (
         <></>
       )}
+      {selectedView == "LogViewer" ? <LogViewer logs={logs} /> : <></>}
     </div>
   );
 }
