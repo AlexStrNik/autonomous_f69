@@ -2,3 +2,4 @@ position.proto
 vector3.proto
 quaternion.proto
 movement.proto
+log.proto
