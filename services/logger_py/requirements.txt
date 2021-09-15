@@ -1,0 +1,2 @@
+protobuf==3.17.3
+nats-python==0.8.0
