@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package autonomous_f69;
+
+import "vector2.proto";
+
+message Points {
+    repeated Vector2 points = 1;
+}
